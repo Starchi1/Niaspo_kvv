@@ -12,6 +12,7 @@ services:
     restart: unless-stopped
 
   telebot:
+    image: starchi1/kv:latest
     build:
       context: ./bot  # Путь до директории с ботом (где находится Dockerfile)
     volumes:
