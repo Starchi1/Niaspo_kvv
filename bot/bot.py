@@ -6,7 +6,7 @@ import os
 # Создаем экземпляр бота
 bot = telebot.TeleBot("7588601604:AAFGdFd-_Gafzd2lZ94UFCl_5CYnb6gjw28")
 
-# Администраторский ID
+
 ADMIN_ID = 1 # Замените на ID администратора
 DB_PATH = os.getenv('DB_PATH', '/app/db/BD_kurs_clients.db')
 
