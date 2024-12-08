@@ -3,7 +3,7 @@ import telebot
 from telebot import types
 from datetime import datetime, timedelta
 import os
-# Создаем экземпляр бота
+# Создаем экземплярбота
 bot = telebot.TeleBot("7588601604:AAFGdFd-_Gafzd2lZ94UFCl_5CYnb6gjw28")
 
 
