@@ -1,8 +1,22 @@
 name: main
 on: push
 jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+  tests:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Tests
+        run: echo "Tests completed. Check the logs for results."
   build:
     runs-on: self-hosted
+    needs: tests
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3

@@ -1,5 +1,4 @@
 version: '3.8'
-
 services:
   db:
     image: nouchka/sqlite3:latest  # Образ для SQLite
@@ -10,13 +9,15 @@ services:
     environment:
       - DB_PATH=/data/BD_kurs_clients.db  # Путь к базе данных в контейнере
     restart: unless-stopped
-
   telebot:
     image: starchi1/kv:latest
     build:
-      context: ./bot  # Путь до директории с ботом (где находится Dockerfile)
+      context: .  # Путь до директории с Dockerfile
     volumes:
-      - ./db:/app/db  # Монтируем ./db в контейнер
+      - ./app/bot.py:/app/bot.py  # Монтируем скрипт бота в контейнер
+
+      # Монтируем базу данных
+      - ./db:/app/db  # Путь до базы данных в контейнере
     environment:
       - TELEGRAM_BOT_TOKEN=7588601604:AAFGdFd-_Gafzd2lZ94UFCl_5CYnb6gjw28  # Токен бота
       - DB_PATH=/app/db/BD_kurs_clients.db  # Путь к базе данных для бота в контейнере
@@ -25,7 +26,6 @@ services:
     networks:
       - appnet
     restart: unless-stopped
-
 networks:
   appnet:
     driver: bridge

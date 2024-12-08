@@ -1,11 +1,16 @@
-# Dockerfile для Telebot
-FROM python:3.9
+FROM python:3.9-slim
 
-# Установка необходимых библиотек
+# Устанавливаем рабочую директорию
 WORKDIR /app
-COPY requirements.txt requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
 
+# Копируем bot.py в контейнер
+COPY app/bot.py /app/bot.py
 
-# Запуск бота
-CMD ["python", "bot.py"]
+# Копируем requirements.txt из корня проекта в контейнер
+COPY requirements.txt /app/requirements.txt
+
+# Устанавливаем зависимости
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+# Запускаем бота
+CMD ["python", "/app/bot.py"]
